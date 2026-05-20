@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coco | AI 内容创业 · 数字化变现</title>
+    <title>Coco</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,73 +15,43 @@
 
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background: #1a1a2e;
-            color: #e8e8e8;
-            overflow-x: hidden;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .serif {
+            font-family: 'Noto Serif SC', serif;
         }
 
         ::selection {
-            background: rgba(155, 135, 245, 0.3);
+            background: rgba(155, 135, 245, 0.2);
         }
 
-        /* 背景微光 - 克制的科技感 */
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(155, 135, 245, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .glow-1 {
-            top: -200px;
-            right: -200px;
+        /* 链接下划线效果 */
+        .link-underline {
+            position: relative;
+            display: inline-block;
         }
 
-        .glow-2 {
-            bottom: -300px;
-            left: -200px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.06) 0%, transparent 70%);
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #9b87f5;
+            transition: width 0.3s ease;
         }
 
-        /* 头像边框渐变 */
-        .avatar-border {
-            background: linear-gradient(135deg, #9b87f5, #4ecdc4, #9b87f5);
-            background-size: 200% 200%;
-            animation: gradient-shift 8s ease infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* 卡片悬浮效果 */
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(155, 135, 245, 0.3);
-            box-shadow: 0 20px 60px rgba(155, 135, 245, 0.15);
-        }
-
-        /* 标签样式 */
-        .tag {
-            background: rgba(155, 135, 245, 0.15);
-            border: 1px solid rgba(155, 135, 245, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .tag:hover {
-            background: rgba(155, 135, 245, 0.25);
-            transform: scale(1.05);
+        .link-underline:hover::after {
+            width: 100%;
         }
 
         /* 渐变文字 */
@@ -92,26 +62,48 @@
             background-clip: text;
         }
 
-        /* 链接按钮 */
-        .btn-primary {
-            background: linear-gradient(135deg, #9b87f5, #7c64e6);
+        /* 标签样式 */
+        .tag {
+            display: inline-block;
+            padding: 2px 12px;
+            background: rgba(155, 135, 245, 0.1);
+            border: 1px solid rgba(155, 135, 245, 0.15);
+            border-radius: 4px;
+            font-size: 13px;
+            color: #9b87f5;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: rgba(155, 135, 245, 0.2);
+        }
+
+        /* 项目卡片 */
+        .project-card {
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(155, 135, 245, 0.3);
+        .project-card:hover {
+            padding-left: 16px;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+        .project-card:hover h3 {
+            color: #9b87f5;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+        /* 数据数字 */
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, #9b87f5, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* 平滑滚动 */
@@ -119,220 +111,262 @@
             scroll-behavior: smooth;
         }
 
-        /* 项目卡片图标背景 */
-        .icon-bg {
-            background: linear-gradient(135deg, rgba(155, 135, 245, 0.2), rgba(78, 205, 196, 0.2));
+        /* 导航 */
+        nav a {
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <!-- 背景微光 -->
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
-
     <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#1a1a2e]/80 border-b border-white/5">
-        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="font-bold text-lg gradient-text">Coco</div>
-            <div class="hidden md:flex gap-8 text-sm text-gray-400">
-                <a href="#about" class="hover:text-white transition-colors">关于我</a>
-                <a href="#services" class="hover:text-white transition-colors">价值服务</a>
-                <a href="#projects" class="hover:text-white transition-colors">在做项目</a>
-                <a href="#contact" class="hover:text-white transition-colors">联系我</a>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0f0f1a]/90 backdrop-blur-sm">
+        <div class="max-w-3xl mx-auto px-6 py-6 flex justify-between items-center text-sm">
+            <a href="#hero" class="font-medium opacity-100">Coco</a>
+            <div class="flex gap-8">
+                <a href="#about">关于</a>
+                <a href="#projects">项目</a>
+                <a href="#skills">技能</a>
+                <a href="#contact">联系</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero 区域 -->
-    <section id="about" class="relative min-h-screen flex items-center z-10 pt-20">
-        <div class="max-w-4xl mx-auto px-6 py-20">
-            <div class="text-center">
-                <!-- 头像 -->
-                <div class="inline-block mb-8">
-                    <div class="avatar-border p-1 rounded-full inline-block">
-                        <div class="w-32 h-32 rounded-full bg-[#16213e] flex items-center justify-center text-5xl">
-                            👩‍💻
-                        </div>
-                    </div>
-                </div>
+    <section id="hero" class="min-h-screen flex items-center pt-20">
+        <div class="max-w-3xl mx-auto px-6 py-20">
+            <p class="text-lg mb-4 text-gray-400">Hi, I'm Coco.</p>
+            
+            <h1 class="serif text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                <span class="gradient-text">AI 工具化实践者。</span><br>
+                把重复繁琐的工作，<br>
+                变成可运行的自动化工具。
+            </h1>
 
-                <!-- 主标题 -->
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                    你好，我是 <span class="gradient-text">Coco</span>
-                </h1>
-
-                <!-- 一句话定位 -->
-                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    AI 内容创业者 · 数字化变现实践者<br>
-                    用 AI 工具赋能，帮助普通人低成本开启轻创业
-                </p>
-
-                <!-- 核心标签 -->
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
-                    <span class="tag px-4 py-2 rounded-full text-sm">AI 爆款内容</span>
-                    <span class="tag px-4 py-2 rounded-full text-sm">智能体开发</span>
-                    <span class="tag px-4 py-2 rounded-full text-sm">自媒体矩阵</span>
-                    <span class="tag px-4 py-2 rounded-full text-sm">轻创业</span>
-                    <span class="tag px-4 py-2 rounded-full text-sm">私域运营</span>
-                </div>
-
-                <!-- 按钮组 -->
-                <div class="flex gap-4 justify-center flex-wrap">
-                    <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium text-white">
-                        👋 加我微信
-                    </a>
-                    <a href="#services" class="btn-secondary px-8 py-3 rounded-full font-medium">
-                        查看服务 →
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 价值服务 -->
-    <section id="services" class="relative py-24 z-10">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-4 text-center">我能为你提供什么</h2>
-            <p class="text-gray-400 text-center mb-16 max-w-xl mx-auto">
-                专注 AI 赋能内容创业，用工具和方法帮你提升效率、拿到结果
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl leading-relaxed">
+                用 AI 工程化的思路 + 内容爆款公式，重新设计内容生产流程；
+                再用智能体协作把答案变成 24 小时在线的工具。
             </p>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- 卡片 1 -->
-                <div class="card-hover p-8 rounded-2xl">
-                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
-                        🚀
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">AI 爆款内容工厂</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        自动拆解对标爆款，基于爆款公式批量生成图文内容，日更 100 篇不是梦
-                    </p>
-                    <div class="text-[#9b87f5] text-sm font-medium">工具 + 方法论 + 陪跑</div>
-                </div>
+            <div class="flex gap-8 text-sm">
+                <a href="#projects" class="link-underline font-medium">
+                    浏览项目 →
+                </a>
+                <a href="#contact" class="link-underline text-gray-400">
+                    联系我
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <!-- 卡片 2 -->
-                <div class="card-hover p-8 rounded-2xl">
-                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
-                        🤖
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">智能体定制开发</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        根据你的业务场景定制专属 AI 助手，客服、销售、助理都能搞定，24 小时在线干活
-                    </p>
-                    <div class="text-[#4ecdc4] text-sm font-medium">按需定制 · 快速交付</div>
-                </div>
+    <!-- 关于 -->
+    <section id="about" class="py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="serif text-2xl font-bold mb-12">关于</h2>
 
-                <!-- 卡片 3 -->
-                <div class="card-hover p-8 rounded-2xl">
-                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
-                        📚
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">轻创业陪跑社群</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        一手 AI 工具玩法、真实可复制的项目案例、同频创业者交流，少走弯路少踩坑
-                    </p>
-                    <div class="text-[#f7d794] text-sm font-medium">年度社群 · 持续更新</div>
-                </div>
+            <div class="space-y-6 text-gray-300 leading-relaxed">
+                <p>
+                    <strong class="text-white">AI 内容创业者，数字化工具开发者。</strong>
+                </p>
+                <p>
+                    从自媒体内容创作起步，深度实践过爆款拆解、批量生产、多平台分发的完整闭环。
+                    当大多数人还在手动复制粘贴的时候，我已经在用 AI 把整个内容生产线变成自动化工具。
+                </p>
+                <p>
+                    做事方法很简单：先找到已经被验证的爆款公式，再问「能不能让 AI 把这个流程跑起来」，
+                    最后把答案变成任何人都能上手的工具。这也是为什么我把自己叫做
+                    <strong class="gradient-text font-medium">「AI 工具化实践者」</strong>。
+                </p>
+            </div>
+        </div>
+    </section>
 
-                <!-- 卡片 4 -->
-                <div class="card-hover p-8 rounded-2xl">
-                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
-                        💡
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">1v1 商业咨询</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        帮你梳理个人定位、设计变现路径、规划 AI 落地策略，用最少的时间拿到正反馈
-                    </p>
-                    <div class="text-[#ff6b6b] text-sm font-medium">深度沟通 · 定制方案</div>
+    <!-- 项目 -->
+    <section id="projects" class="py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="serif text-2xl font-bold mb-4">我在做的事。</h2>
+            <p class="text-gray-500 mb-12">四个并行的项目，每一个都在解决一个具体的痛点。</p>
+
+            <div class="project-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs text-green-400 px-2 py-0.5 bg-green-400/10 rounded">已上线</span>
+                </div>
+                <h3 class="text-xl font-medium mb-3 transition-colors">AI 爆款内容工厂</h3>
+                <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                    粘贴任意爆款文案，AI 自动拆解结构、提炼公式，然后批量生成同类型内容。
+                    从对标分析到成片输出，一个人就是一个内容团队。
+                </p>
+                <div class="flex flex-wrap">
+                    <span class="tag">爆款拆解</span>
+                    <span class="tag">批量生成</span>
+                    <span class="tag">内容公式</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs text-yellow-400 px-2 py-0.5 bg-yellow-400/10 rounded">持续迭代</span>
+                </div>
+                <h3 class="text-xl font-medium mb-3 transition-colors">智能体矩阵</h3>
+                <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                    针对不同业务场景定制的专属 AI 助手。客服、销售、内容助理、数据分析，
+                    每一个智能体都是一个 24 小时在线的员工。
+                </p>
+                <div class="flex flex-wrap">
+                    <span class="tag">Agent 开发</span>
+                    <span class="tag">工作流设计</span>
+                    <span class="tag">Prompt 工程</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs text-blue-400 px-2 py-0.5 bg-blue-400/10 rounded">日常运营</span>
+                </div>
+                <h3 class="text-xl font-medium mb-3 transition-colors">全平台自媒体矩阵</h3>
+                <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                    小红书、公众号、知乎多平台同步更新，分享 AI 工具的实战玩法、
+                    轻创业项目的完整复盘、普通人能用的效率提升技巧。
+                </p>
+                <div class="flex flex-wrap">
+                    <span class="tag">内容创作</span>
+                    <span class="tag">案例复盘</span>
+                    <span class="tag">工具分享</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs text-purple-400 px-2 py-0.5 bg-purple-400/10 rounded">长期项目</span>
+                </div>
+                <h3 class="text-xl font-medium mb-3 transition-colors">轻创业陪跑社群</h3>
+                <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                    一手 AI 工具玩法、真实可复制的项目案例、同频创业者的交流圈子。
+                    从 0 到 1 跑通闭环，少走弯路少踩坑。
+                </p>
+                <div class="flex flex-wrap">
+                    <span class="tag">社群运营</span>
+                    <span class="tag">项目孵化</span>
+                    <span class="tag">同频链接</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 在做项目 -->
-    <section id="projects" class="relative py-24 z-10">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-4 text-center">我正在做的事</h2>
-            <p class="text-gray-400 text-center mb-16 max-w-xl mx-auto">
-                持续探索 AI 时代的更多可能性
+    <!-- 技能 -->
+    <section id="skills" class="py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="serif text-2xl font-bold mb-12">用得最顺手的几样工具。</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">内容生产</h3>
+                    <div class="space-y-2">
+                        <div>爆款公式拆解</div>
+                        <div>批量内容生成</div>
+                        <div>多平台适配</div>
+                        <div>Hook 设计</div>
+                        <div>AI 文风校准</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">AI 工程</h3>
+                    <div class="space-y-2">
+                        <div>智能体开发</div>
+                        <div>工作流自动化</div>
+                        <div>Prompt 工程</div>
+                        <div>Skill 系统设计</div>
+                        <div>API 集成</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">商业运营</h3>
+                    <div class="space-y-2">
+                        <div>私域流量运营</div>
+                        <div>产品设计</div>
+                        <div>变现路径规划</div>
+                        <div>社群运营</div>
+                        <div>转化率优化</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">工具栈</h3>
+                    <div class="space-y-2">
+                        <div>Claude / GPT</div>
+                        <div>Coze / 扣子平台</div>
+                        <div>各类 AI 生产力工具</div>
+                        <div>自动化脚本</div>
+                        <div>数据看板</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据里程碑 -->
+    <section class="py-24 border-y border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="serif text-2xl font-bold mb-12">一些数字。</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-number mb-2">10+</div>
+                    <div class="text-sm text-gray-500">AI 工具开发</div>
+                </div>
+                <div>
+                    <div class="stat-number mb-2">5000+</div>
+                    <div class="text-sm text-gray-500">AI 生成内容</div>
+                </div>
+                <div>
+                    <div class="stat-number mb-2">6</div>
+                    <div class="text-sm text-gray-500">并行项目</div>
+                </div>
+                <div>
+                    <div class="stat-number mb-2">∞</div>
+                    <div class="text-sm text-gray-500">持续迭代中</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="serif text-2xl font-bold mb-8">想聊聊吗？</h2>
+
+            <p class="text-gray-400 mb-10 max-w-xl leading-relaxed">
+                AI 工具定制、内容创业交流、轻创业项目探讨，或者只是想认识一下 ——
+                欢迎加我微信。我会回。
             </p>
 
-            <div class="space-y-6">
-                <div class="card-hover p-6 rounded-2xl flex items-start gap-6">
-                    <div class="text-4xl">🛠</div>
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">AI 工具矩阵研发</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            持续开发各种实用的 AI 小工具，爆款拆解、批量写作、智能客服，哪里有痛点就解决哪里
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card-hover p-6 rounded-2xl flex items-start gap-6">
-                    <div class="text-4xl">📱</div>
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">全平台自媒体内容</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            小红书、公众号、知乎多平台同步更新，分享 AI 工具使用技巧和轻创业干货
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card-hover p-6 rounded-2xl flex items-start gap-6">
-                    <div class="text-4xl">🌱</div>
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">轻创业项目孵化</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            测试、验证、打磨可复制的轻创业项目，用最低成本跑通从 0 到 1 的完整闭环
-                        </p>
-                    </div>
-                </div>
+            <div class="inline-block">
+                <a href="#" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/8 border border-white/10 rounded-lg transition-all">
+                    <span>👋</span>
+                    <span>加微信聊聊</span>
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- 联系我 -->
-    <section id="contact" class="relative py-24 z-10">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="card-hover p-12 rounded-3xl text-center">
-                <h2 class="text-3xl font-bold mb-4">想进一步链接？</h2>
-                <p class="text-gray-400 mb-10 max-w-lg mx-auto">
-                    加我微信，备注「来自个人主页」，送你一份我整理的《AI 工具实用手册》
-                </p>
-
-                <div class="inline-block">
-                    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-                        <div class="w-48 h-48 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 mb-4">
-                            <!-- 这里放你的微信二维码，替换成真实的 -->
-                            [微信二维码]
-                        </div>
-                        <p class="text-sm text-gray-400">扫码或搜索：你的微信号</p>
-                    </div>
-                </div>
-
-                <div class="mt-10 flex justify-center gap-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="text-xl">📕</span> 小红书
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="text-xl">💬</span> 公众号
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="text-xl">🐦</span> Twitter
-                    </a>
-                </div>
+            <div class="mt-16 flex gap-8 text-sm text-gray-500">
+                <a href="#" class="hover:text-white transition-colors">小红书</a>
+                <a href="#" class="hover:text-white transition-colors">公众号</a>
+                <a href="#" class="hover:text-white transition-colors">Email</a>
+                <a href="#" class="hover:text-white transition-colors">GitHub</a>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="relative py-12 z-10 border-t border-white/5">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-gray-500 text-sm">
-                ✨ 用 AI 创造更多可能性
-            </p>
-            <p class="text-gray-600 text-xs mt-4">
-                © 2026 Coco · Made with 💜 and AI
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <p class="text-sm text-gray-600">
+                © 2026 Coco · Made with AI and ☕
             </p>
         </div>
     </footer>
